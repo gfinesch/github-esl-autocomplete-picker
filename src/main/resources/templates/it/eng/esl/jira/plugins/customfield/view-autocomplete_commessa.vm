@@ -1,0 +1,7 @@
+ 
+#if ($value)
+	$textutils.htmlEncode($value.getString("name"))
+	<div class="shorten" id="${customField.id}-field">
+		$value
+	</div>
+#end

@@ -1,0 +1,24 @@
+<html>
+<head>
+</head>
+
+<body>
+
+<div id="${customField.id}_container">
+#customControlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters $auiparams)
+        <aui-select
+            id="$customField.id"
+            name="$customField.id"
+            placeholder="Codice Commessa"
+            src="$req.contextPath/rest/arv/1.0/commesse-sial-component/getCommesseSIALList"
+            value="type to trigger"
+        >    
+        #if ($value)   
+            <aui-option value="$value" selected></aui-option>    
+        #end         
+        </aui-select>
+#customControlFooter ($action $customField.id $fieldLayoutItem.fieldDescription $displayParameters $auiparams)
+</div>
+
+</body>
+</html>

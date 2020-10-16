@@ -1,0 +1,51 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/jira-favicon-scaled.png</param>
+        <param name="plugin-logo">images/EngineeringALM-icon_medium.png</param>
+	</plugin-info>
+
+	<rest key="rest-arv-services" path="/arv" version="1.0">
+        <description>Provides the REST resource for Registo Visite.</description>
+    </rest>
+    
+  <web-resource key="form-plugin-resources" name="form-plugin Web Resources">
+  <context>atl.general</context>
+  <context>customerportal</context> 
+    <dependency>com.atlassian.auiplugin:aui-select</dependency>
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+  </web-resource>
+  
+
+
+
+	<!-- Autocomplete Commessa SIAL -->
+	<customfield-type key="autocompleteCommessaSIALPicker" name="autocompleteCommessaSIALPicker" class="it.eng.esl.github.demo.jira.plugins.customfield.AutocompleteCommessaSIALPicker"
+		i18n-name-key="api.custom.field.autocompleteCommessaSIALPicker.name">
+		<description key="api.custom.field.autocompleteCommessaSIALPicker.description">Allows to select commessa SIAL with auto-complete</description>
+
+		<resource type="i18n" name="i18n" location="i18n.AutocompleteCommessaPicker" />
+		<resource type="velocity" name="view" location="templates/it/eng/esl/jira/plugins/customfield/view-autocomplete_commessa.vm" />
+		<resource type="velocity" name="edit" location="templates/it/eng/esl/jira/plugins/customfield/edit-autocomplete_commessa_sial.vm" />
+		<resource type="velocity" name="xml"  location="templates/it/eng/esl/jira/plugins/customfield/xml-autocomplete_commessa.vm" />
+	</customfield-type>
+
+	<!-- Free Text Searcher -->
+	<customfield-searcher key="arv-text-searcher" name="ARV Text Searcher" class="com.atlassian.jira.issue.customfields.searchers.TextSearcher">
+        <description key="admin.customfield.searcher.textsearcher.desc">Search for ARV Text Field using a free text search.</description>
+
+        <resource type="velocity" name="search" location="templates/plugins/fields/edit-searcher/search-basictext.vm"/>
+        <resource type="velocity" name="view" location="templates/plugins/fields/view-searcher/view-searcher-basictext.vm"/>
+        <valid-customfield-type package="${project.groupId}.${project.artifactId}"  key="autocompleteCommessaSIALPicker"/>
+	</customfield-searcher>
+
+	
+ <web-panel key="myPanel" location="servicedesk.portal.request.fields.create">
+		<resource type="velocity" name="edit" location="templates/it/eng/esl/jira/plugins/customfield/edit-autocomplete_commessa_sial.vm" />
+		<resource type="velocity" name="view" location="templates/it/eng/esl/jira/plugins/customfield/view-autocomplete_commessa.vm" />
+</web-panel>
+
+
+</atlassian-plugin>
